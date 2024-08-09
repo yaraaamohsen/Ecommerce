@@ -1,0 +1,43 @@
+<div class="w-75 mx-auto">
+    <h3 class="text-main py-3">Log In</h3>
+    <form [formGroup]="loginForm" (ngSubmit) = "loginSubmit()">
+        <div class="py-2">
+            <label for="email">Email</label>
+            <input formControlName="email" name="email" type="text" class="form-control">
+            @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched){
+                <div class="alert alert-danger my-1">
+                    @if (loginForm.get('email')?.errors?.['required']) {
+                        <p>Email is Required</p>
+                    }
+                    @else if (loginForm.get('email')?.errors?.['email']) {
+                        <p>Email not Valid</p>
+                    }
+                </div>
+            }
+        </div>
+        <div class="py-2">
+            <label for="password">Password</label>
+            <input formControlName="password" name="password" type="text" class="form-control">
+            @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched){
+                <div class="alert alert-danger my-1">
+                    @if (loginForm.get('password')?.errors?.['required']) {
+                        <p>password is Required</p>
+                    }
+                    @else if (loginForm.get('password')?.errors?.['pattern']) {
+                        <p>Password must be from 8 to 12 characters which contain:
+                            <br>- Capital Letter
+                            <br>- Small Letter
+                            <br>- Special Character ($!%*&#64;?&)
+                            <br>- Number</p>
+                    }
+                </div>
+            }
+        </div>
+        <button [disabled]="loginForm.invalid" class="bg-main text-light btn d-block ms-auto">Log In
+            @if(isLoading){
+                <i class="fa-solid fa-spin fa-spinner"></i>
+            }
+        </button>
+        <h4 class="text-danger text-center">{{errorMessage}}</h4>
+    </form>
+</div>
