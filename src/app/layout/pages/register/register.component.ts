@@ -8,7 +8,7 @@ Router
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
 
@@ -28,17 +28,13 @@ export class RegisterComponent {
 
   registerSubmit(){
     this.isLoading = true;
-
-    console.log(this.registerForm.value);
     this._AuthService.register(this.registerForm.value).subscribe({
       next :(res) =>{
         this.isLoading = false;
-        console.log(res);
         this._Router.navigate(['login'])
       },
       error: (err) =>{
         this.isLoading = false;
-        console.log(err.error.message);
         this.errorMessage = err.error.message;
       }
     })

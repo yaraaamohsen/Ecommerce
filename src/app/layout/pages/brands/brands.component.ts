@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './brands.component.html',
-  styleUrl: './brands.component.css'
+  styleUrl: './brands.component.scss'
 })
 export class BrandsComponent {
   ngOnInit(): void{

@@ -1,0 +1,21 @@
+<h4 class="text-danger text-center">{{errorMessage}}</h4>
+
+<form class="mx-auto w-75 py-2" [formGroup]="sendEmailForm" (ngSubmit)="emailSubmit()">
+    <h3 class=" text-main">Enter your Email</h3>
+    <input type="Email" class="form-control" formControlName="email" placeholder="Enter Your Email">
+    @if(sendEmailForm.get('email')?.errors && sendEmailForm.get('email')?.touched){
+        <div class="alert alert-danger">
+            @if(sendEmailForm.get('email')?.errors?.['required']){
+                <p>Email is required</p>
+            }
+            @if (sendEmailForm.get('email')?.errors?.['email']) {
+                <p>Email is Not Valid</p>
+            }
+        </div>
+    }
+    <button [disabled]="sendEmailForm.invalid" class="my-1 bg-main text-light btn ms-auto">send Email
+        @if(isLoading){
+            <i class="fa-solid fa-spin fa-spinner"></i>
+        }
+    </button>
+</form>

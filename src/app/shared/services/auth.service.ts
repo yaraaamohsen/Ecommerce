@@ -33,8 +33,18 @@ export class AuthService {
 
   userData() {
     this.userDecode.next(jwtDecode(JSON.stringify(localStorage.getItem('userToken'))));
-
-    console.log(this.userDecode.getValue());
-
   }
+
+  sendEmailVerify(data: object): Observable<any> {
+    return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/forgotPasswords`, data)
+  }  
+  
+  sendCode(data: object): Observable<any> {
+    return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/verifyResetCode`, data)
+  }
+
+  sendNewPassword(data: object): Observable<any> {
+    return this._HttpClient.put(`${environment.baseURL}/api/v1/auth/resetPassword`, data)
+  }
+  
 }

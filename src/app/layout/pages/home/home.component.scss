@@ -1,0 +1,15 @@
+button{
+    transform: translateY(150%);
+    transition: all 0.5s;
+}
+
+.my-product:hover button{
+    transform: translateY(0%);
+}
+
+.toast-container {
+    position: absolute !important;
+    top: 10px; 
+    right: 10px; 
+    z-index: 1000;
+}

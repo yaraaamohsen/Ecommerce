@@ -33,11 +33,15 @@
                 </div>
             }
         </div>
-        <button [disabled]="loginForm.invalid" class="bg-main text-light btn d-block ms-auto">Log In
-            @if(isLoading){
-                <i class="fa-solid fa-spin fa-spinner"></i>
-            }
-        </button>
+        <div class="text-end">
+            <a (click)="goForgetPassword()" class="text-decoration-underline px-3 text-primary cursor-pointer">Forget Password?</a>
+            <button [disabled]="loginForm.invalid" class="bg-main text-light btn ms-auto">Log In
+                @if(isLoading){
+                    <i class="fa-solid fa-spin fa-spinner"></i>
+                }
+            </button>
+        </div>
+        
         <h4 class="text-danger text-center">{{errorMessage}}</h4>
     </form>
 </div>

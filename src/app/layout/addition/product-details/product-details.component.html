@@ -1,1 +1,27 @@
-<p>product-details works!</p>
+<div class="container py-5 w-75 mx-auto">
+    <div class="row">
+        <div class="col-md-5">
+            <div>
+                <owl-carousel-o [options]="customOptions">
+                    @for (imageSrc of images; track $index) {
+                        <ng-template carouselSlide >
+                            <img class="img-fluid w-100" [src]="imageSrc">
+                        </ng-template>
+                    }
+                </owl-carousel-o>
+            </div>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <div>
+                <h2>{{productObj.title}}</h2>
+                <p class="text-muted">{{productObj.description}}</p>
+                <h6>{{productObj.category.name}}</h6>
+                <div class="d-flex justify-content-between">
+                    <p>{{productObj.price}} EGP</p>
+                    <p> <i class="fa-solid fa-star text-warning"></i> {{productObj.ratingsAverage}}</p>
+                </div>
+                <button class="btn bg-main w-100 text-light">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</div>

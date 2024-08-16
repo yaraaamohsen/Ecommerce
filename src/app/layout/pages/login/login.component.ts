@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
@@ -27,20 +27,21 @@ export class LoginComponent {
 
   loginSubmit() {
     this.isLoading = true;
-    console.log(this.loginForm.value);
     this._AuthService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        console.log(res);
         localStorage.setItem('userToken', res.token);
         this._AuthService.userData();
         this._Router.navigate(['home']);
         this.isLoading = false;
       },
       error: (err) => {
-        console.log(err);
         this.errorMessage = err.error.message;
         this.isLoading = false;
       }
     })
+  }
+
+  goForgetPassword(){
+    this._Router.navigate(['/emailVerify'])
   }
 }

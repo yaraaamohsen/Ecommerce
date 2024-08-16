@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="assets/images/freshcart-logo.svg" alt="">
@@ -39,6 +39,12 @@
           <a class="nav-link" routerLink="login">Log In</a>
         }
        @else {
+        <div class="position-relative">
+          <i class="fa-solid fa-cart-shopping text-main cursor-pointer" routerLink = '/cart'></i>
+          <div class="circle rounded-circle bg-main d-flex justify-content-center align-items-center position-absolute">
+            <p class="text-white mb-0">{{cartItems}}</p>
+          </div>
+        </div>
         <a (click)="signout()" class="nav-link cursor-pointer">Signout</a>
        }
       </div>

@@ -1,1 +1,28 @@
-<p>cart works!</p>
+<div class="container py-5">
+    <div class="row align-items-center gy-3">
+        @for (item of myCart.data.products; track $index) {
+            <div class="col-md-3">
+                <img [src]="item.product.imageCover" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7">
+                <p class="h4">{{item.product.title}}</p>
+                <p>price:  {{item.price}}</p>
+                <i (click)="removeItem(item.product._id)" class="cursor-pointer fa-solid fa-trash text-danger"></i>
+            </div>
+            <div class="col-md-2 d-flex align-items-baseline justify-content-around">
+                <i (click)="updatedCound(item.count = item.count - 1 , item.product._id)" class="cursor-pointer fa-solid fa-minus bg-main  p-1 text-white"></i>
+                <p>{{item.count}} </p>
+                <i (click)="updatedCound(item.count = item.count + 1 , item.product._id)" class="cursor-pointer fa-solid fa-plus bg-main p-1 text-white"></i>
+            </div>
+            <p class="text-end">Total Amount: <span class="btn bg-main text-white">{{cartData.totalCartPrice}}</span></p>
+        }
+    </div>
+    @if (myCart.data.products.length > 0) {
+        <div class="text-end">
+            <button class="btn btn-danger text-white">remove All items</button>
+        </div>
+    }
+    @else {
+        <p class="h1 text-danger fw-bolder">CART IS EMPTY!</p>
+    }
+</div>

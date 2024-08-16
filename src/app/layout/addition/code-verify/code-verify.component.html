@@ -1,0 +1,18 @@
+<h4 class="text-danger text-center">{{errorMessage}}</h4>
+
+<form class="mx-auto w-75 py-2" [formGroup]="codeForm" (ngSubmit)="codeSubmit()">
+    <h3 class=" text-main">Enter Valid Code</h3>
+    <input type="text" class="form-control" formControlName="resetCode" placeholder="reset code">
+    @if(codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched){
+        <div class="alert alert-danger">
+            @if(codeForm.get('resetCode')?.errors?.['required']){
+                <p>resetCode is required</p>
+            }
+        </div>
+    }  
+    <button [disabled]="codeForm.invalid" class="my-1 bg-main text-light btn ms-auto">Send Code
+        @if(isLoading){
+            <i class="fa-solid fa-spin fa-spinner"></i>
+        }
+    </button>
+</form>
